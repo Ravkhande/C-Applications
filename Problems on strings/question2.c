@@ -1,33 +1,54 @@
 
-/* problem statement: Write a program which accept string from user and convert it into
-upper case.  */
+/* problem stetement: Write a program which accept string from user and accept one
+character. Return frequency of that character.
+
+Input : “Marvellous Multi OS”
+                M
+Output : 2
+Input : “Marvellous Multi OS”
+                 W
+Output : 0 
+*/
 
 #include <stdio.h>
 
-void struprx(char str[])
+int CountChar(char *str, char ch)
 {
-    int i = 0;
+    int iCnt = 0;
 
-    while (str[i] != '\0')
+    if (str == NULL)      //filter
     {
-        if (str[i] >= 'a' && str[i] <= 'z')
+        return -1;
+    }
+
+    while (*str != '\0')
+    {
+        if (*str == ch)
         {
-            str[i] = str[i] - 32;
+            iCnt++;
         }
 
-        i++;
+        str++;
     }
-    printf("Modified string is: %s", str);
+
+    return iCnt;
 }
 
 int main()
 {
-    char arr[20];
+    char arr[30];
+    char cValue = '\0';
+    int iRet = 0;
 
-    printf("Enter string\n");
+    printf("Enter the string\n");
     scanf("%[^'\n']s", arr);
 
-    struprx(arr);
+    printf("enter the charcter\n");
+    scanf(" %c", &cValue);
+
+    iRet = CountChar(arr, cValue);
+
+    printf("frequency of that character is: %d\n", iRet);
 
     return 0;
 }

@@ -1,48 +1,53 @@
 
-/* problem sttatement: Write a program which accept string from user and count number of
-white spaces
-Input : “MarvellouS”
-Output : 0
-Input : “MarvellouS Infosystems”
-Output : 1
-Input : “MarvellouS Infosystems by Piyush Manohar Khairnnar”
-Output : 5 
+/* problem statement:  Write a program which accept string from user reverse that string
+in place.
+Input : “abcd”
+Output : “dcba”
+
+Input : “abba”
+Output : “abba” 
 */
 
 #include <stdio.h>
 
-int CountWhite(char str[])
+void StrRevX(char str[])
 {
-    int iCnt = 0;
-    int i = 0;
+    int iStart = 0;
+    int iEnd = 0;
+    char temp = '\0';
 
     if (str == NULL) //filter
     {
-        return -1;
+        return;
     }
 
-    while (str[i] != '\0')
+    while (str[iEnd] != '\0') // O(N)
     {
-        if (str[i] == ' ')
-        {
-            iCnt++;
-        }
-        i++;
+        iEnd++;
     }
+    iEnd--;
 
-    return iCnt;
+    while (iStart < iEnd) //O(N/2)
+    {
+        temp = str[iStart];
+        str[iStart] = str[iEnd];
+        str[iEnd] = temp;
+
+        iStart++;
+        iEnd--;
+    }
 }
 
 int main()
 {
-    char arr[100];
-    int iRet = 0;
+    char arr[30];
 
-    printf("Enter string\n");
+    printf("Enter the string\n");
     scanf("%[^'\n']s", arr);
 
-    iRet = CountWhite(arr);
-    printf("%d", iRet);
+    StrRevX(arr);
+
+    printf("Reverse string in that place is: %s\n", arr);
 
     return 0;
 }
